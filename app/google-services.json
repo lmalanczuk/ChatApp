@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "945294272246",
+    "firebase_url": "https://commu-5778a-default-rtdb.firebaseio.com",
+    "project_id": "commu-5778a",
+    "storage_bucket": "commu-5778a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945294272246:android:948ac6ec621359554d2ed7",
+        "android_client_info": {
+          "package_name": "com.example.communicator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0vjkmcBTIg2WkjQoafb7XO2E2z1JfCNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945294272246:android:6b4cf15c5bfac7574d2ed7",
+        "android_client_info": {
+          "package_name": "com.mastercoding.chatapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0vjkmcBTIg2WkjQoafb7XO2E2z1JfCNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
