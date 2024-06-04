@@ -26,9 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Repository {
-
-    // It acts as a bridge between the ViewModel and the data Source
-
     MutableLiveData<List<ChatGroup>> chatGroupMutableLiveData;
 
     FirebaseDatabase database;
@@ -64,18 +61,14 @@ public class Repository {
                 });
     }
 
-    // Getting Current User ID
     public String getCurrentUserId(){
         return FirebaseAuth.getInstance().getUid();
     }
 
-    // SignOut Functionality
     public void signOUT(){
         FirebaseAuth.getInstance().signOut();
     }
 
-
-    // Getting Chat Groups available from Firebase realtime DB
     public MutableLiveData<List<ChatGroup>> getChatGroupMutableLiveData() {
         List<ChatGroup> groupsList = new ArrayList<>();
 
@@ -102,16 +95,13 @@ public class Repository {
         return chatGroupMutableLiveData;
     }
 
-    // Creating a new group
     public void createNewChatGroup(String groupName){
         reference.child(groupName).setValue(groupName);
 
     }
 
-
-    // Getting Messages Live Data
     public MutableLiveData<List<ChatMessage>> getMessagesLiveData(String groupName) {
-       // child(groupName): used to specify a child node under the root reference
+
         groupReference = database.getReference().child(groupName);
 
         List<ChatMessage> messagesList = new ArrayList<>();

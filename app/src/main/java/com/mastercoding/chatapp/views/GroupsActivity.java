@@ -58,13 +58,9 @@ public class GroupsActivity extends AppCompatActivity {
         recyclerView = binding.recyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
-        // Setup an observer to listen for changes in a "Live Data" object
         myViewModel.getGroupList().observe(this, new Observer<List<ChatGroup>>() {
             @Override
             public void onChanged(List<ChatGroup> chatGroups) {
-                // the updated data is received as "chatGroups" parameter in onChanged()
-
                 chatGroupArrayList = new ArrayList<>();
                 chatGroupArrayList.addAll(chatGroups);
 
@@ -72,11 +68,6 @@ public class GroupsActivity extends AppCompatActivity {
 
                 recyclerView.setAdapter(groupAdapter);
                 groupAdapter.notifyDataSetChanged();
-
-
-
-
-
             }
         });
 

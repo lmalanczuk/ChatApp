@@ -9,15 +9,20 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.navigation.NavigationView;
 import com.mastercoding.chatapp.R;
 import com.mastercoding.chatapp.databinding.ActivityChatBinding;
 import com.mastercoding.chatapp.model.ChatMessage;
 import com.mastercoding.chatapp.viewmodel.MyViewModel;
 import com.mastercoding.chatapp.views.adapters.ChatAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +38,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        Toolbar toolbar = findViewById(R.id.toolbar); // Moved toolbar initialization here
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
@@ -44,13 +49,12 @@ public class ChatActivity extends AppCompatActivity {
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(item -> {
-            // Handle navigation view item clicks here.
             int id = item.getItemId();
 
             if (id == R.id.nav_item_1) {
-                // Handle item 1 click
+                Toast.makeText(this, "Przepraszamy że nie działa:(", Toast.LENGTH_LONG).show();
             } else if (id == R.id.nav_item_2) {
-                // Handle item 2 click
+                Toast.makeText(this, "Przepraszamy że nie działa:(", Toast.LENGTH_LONG).show();
             }
 
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -61,34 +65,28 @@ public class ChatActivity extends AppCompatActivity {
 
         myViewModel = new ViewModelProvider(this).get(MyViewModel.class);
 
-        // RecyclerView with DataBinding
         recyclerView = binding.recyclerView;
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-
-        // Getting the Group Name from the Clicked Item in the GroupsActivity
         String groupName = getIntent().getStringExtra("GROUP_NAME");
+        myViewModel.getMessagesLiveData(groupName).observe(this, new Observer<List<ChatMessage>>() {
+            @Override
+            public void onChanged(List<ChatMessage> chatMessages) {
+                messagesList = new ArrayList<>();
+                messagesList.addAll(chatMessages);
 
-        if (groupName != null) {
-            myViewModel.getMessagesLiveData(groupName).observe(this, new Observer<List<ChatMessage>>() {
-                @Override
-                public void onChanged(List<ChatMessage> chatMessages) {
-                    messagesList = new ArrayList<>();
-                    messagesList.addAll(chatMessages);
+                myAdapter = new ChatAdapter(messagesList, getApplicationContext());
 
-                    myAdapter = new ChatAdapter(messagesList, getApplicationContext());
+                recyclerView.setAdapter(myAdapter);
+                myAdapter.notifyDataSetChanged();
 
-                    recyclerView.setAdapter(myAdapter);
-                    myAdapter.notifyDataSetChanged();
-
-                    // Scroll to the latest message added:
-                    int latestPosition = myAdapter.getItemCount() - 1;
-                    if (latestPosition > 0) {
-                        recyclerView.smoothScrollToPosition(latestPosition);
-                    }
+                int latestPosition = myAdapter.getItemCount() - 1;
+                if (latestPosition > 0) {
+                    recyclerView.smoothScrollToPosition(latestPosition);
                 }
-            });
-        }
+            }
+        });
 
         binding.setVModel(myViewModel);
 
@@ -97,7 +95,6 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String msg = binding.edittextChatMessage.getText().toString();
                 myViewModel.sendMessage(msg, groupName);
-
                 binding.edittextChatMessage.getText().clear();
             }
         });

@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:title="Chat"
+                app:title="Rozmawiaj!"
                 app:titleTextColor="@android:color/white"
                 android:elevation="4dp"
                 app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"/>
@@ -48,14 +48,14 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:hint="Type Here"
+                    android:hint="Tu wpisz wiadomosc"
                     android:layout_marginLeft="5dp" />
 
                 <Button
                     android:id="@+id/sendBTN"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:text="Send" />
+                    android:text="Wyslij" />
 
             </LinearLayout>
         </RelativeLayout>

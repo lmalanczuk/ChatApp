@@ -27,7 +27,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
     @NonNull
     @Override
     public GroupViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Initializes the ViewHolder and Inflates the Item Layout
         ItemCardBinding binding = DataBindingUtil
                 .inflate(
                         LayoutInflater.from(parent.getContext()),
@@ -41,8 +40,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
 
     @Override
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
-        // binds data to an existing ViewHolder
-        // Populates the Views in the ViewHolder with Data from the Dataset
         ChatGroup currentUser = groupArrayList.get(position);
         holder.itemCardBinding.setChatGroup(currentUser);
     }
@@ -55,8 +52,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
 
 
     public class GroupViewHolder extends RecyclerView.ViewHolder{
-        // cache references to the individual views with in an item layout
-        // of a recyclerView list
         private ItemCardBinding itemCardBinding;
 
 

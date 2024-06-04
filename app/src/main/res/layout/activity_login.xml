@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="104dp"
             android:gravity="center"
-            android:text="Welcome to our Chat App \nFeel Free to Meet new Friends!"
+            android:text="Witaj w naszym komunikatorze!"
             android:textColor="@color/white"
             android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="16dp"
             android:padding="10dp"
-            android:text="Anonymous Login"
+            android:text="Logowanie Anonimowe"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
