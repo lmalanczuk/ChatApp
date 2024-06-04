@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -10,71 +9,62 @@
             type="com.mastercoding.chatapp.viewmodel.MyViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:textSize="24sp"
-            android:textColor="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="Messages"
-            android:gravity="center"
-            android:background="#47249E"/>
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:title="Chat"
+                app:titleTextColor="@android:color/white"
+                android:elevation="4dp"
+                app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:id="@+id/recyclerView"
-                android:layout_above="@+id/layout_input">
-            </androidx.recyclerview.widget.RecyclerView>
+                android:layout_width="match_parent"
+                android:layout_height="619dp"
+                android:layout_above="@+id/layout_input"
+                android:layout_below="@+id/toolbar"
+                android:layout_marginTop="-1dp"
+                android:layout_marginBottom="0dp" />
 
             <LinearLayout
+                android:id="@+id/layout_input"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/layout_input"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/edittext_chat_message"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:hint="Type Here"
-                    android:id="@+id/edittext_chat_message"
-                    android:layout_marginLeft="5dp"/>
+                    android:layout_marginLeft="5dp" />
 
                 <Button
-
                     android:id="@+id/sendBTN"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:text="Send"/>
-
-
+                    android:text="Send" />
 
             </LinearLayout>
-
-
-
-
-
         </RelativeLayout>
 
-
-
-
-
-    </LinearLayout>
-
-
-
-
-
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/drawer_menu" />
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
